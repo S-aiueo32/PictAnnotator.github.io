@@ -124,7 +124,10 @@ function draw_ann(canvas, data, txt){
         var radius = Math.floor( Math.random() * (30 + 1 - 20) ) + 20 ;
         ctx.beginPath();
         ctx.arc(data[i][0], data[i][1], radius, 0, Math.PI*2, true);
-        ctx.fillStyle = "white";
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
         ctx.globalAlpha = 0.5;
         ctx.fill();
     }
