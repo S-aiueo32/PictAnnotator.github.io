@@ -72,8 +72,8 @@ function muuXY(e, block, that) {
         x = e.targetTouches[0].pageX - e.target.offsetLeft;
         y = e.targetTouches[0].pageY - e.target.offsetTop;
     }else if (that){
-        x = e.pageX - (block.offsetLeft + that.offsetLeft);
-        y = e.pageY - (block.offsetTop + that.offsetTop);
+        x = e.pageX + 1 - (block.offsetLeft + that.offsetLeft);
+        y = e.pageY + 1 - (block.offsetTop + that.offsetTop);
         //console.log(that.offsetLeft);
         //console.log(that.offsetTop);
         
