@@ -55,7 +55,7 @@ window.onload=function(){
 		var client_h = ann_canvas.clientHeight;
 		
         document.getElementById("annotation").value = "Input Tag Text and Click the Tag Position";
-        tweet(r, file_name);
+        //tweet(r, file_name);
 	}
 }
 function tweet(r, name){
