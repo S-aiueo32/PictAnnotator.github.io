@@ -121,8 +121,9 @@ function draw_ann(canvas, data, txt){
     var ctx = canvas.getContext('2d');
     //console.log(data[0][0])
     for(var i=0; i<txt.length; i++){
+        var radius = Math.floor( Math.random() * (30 + 1 - 20) ) + 20 ;
         ctx.beginPath();
-        ctx.arc(data[i][0], data[i][1] , 30 , 0 , Math.PI*2, true);
+        ctx.arc(data[i][0], data[i][1], radius, 0, Math.PI*2, true);
         ctx.fillStyle = "white";
         ctx.globalAlpha = 0.5;
         ctx.fill();
