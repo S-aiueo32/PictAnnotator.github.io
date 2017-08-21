@@ -128,7 +128,11 @@ function draw_ann(canvas, data, txt){
         var g = Math.floor(Math.random() * 256);
         var b = Math.floor(Math.random() * 256);
         ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
-        ctx.globalAlpha = 0.5;
+        ctx.globalAlpha = 0.75;
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+        ctx.shadowBlur = 3;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 2;
         ctx.fill();
     }
 }
