@@ -7,7 +7,7 @@ window.onload=function(){
     var ann_canvas  =   document.getElementById('ann_canvas');
     //var img_canvas = document.createElement("canvas");
     //var ann_canvas = document.createElement("canvas");
-    
+
     //canvas.width = image.width;
     //canvas.height = image.height;
     //img_canvas.width = image.width;
@@ -16,43 +16,43 @@ window.onload=function(){
     image_block.height = image.height;
     ann_canvas.width = image.width;
     ann_canvas.height = image.height;
-    
+
     //console.log(image_block.height);
-    
+
     //draw_img(img_canvas, image);
-    
+
     var data = [[43, 383],[350, 166],[483, 509],[352, 751],[30, 462]];
     var txt = ["風が吹いている","顔が描かれていない","タッチがよい","色がやわらか","ブルーがきれい"];
     draw_ann(ann_canvas, data, txt);
-    
+
     //img_canvas.style.display = "inline";
-    
+
     //var ctx = canvas.getContext('2d');
     //ctx.drawImage(img_canvas, 0, 0, canvas.width, canvas.height);
     //ctx.drawImage(ann_canvas, 0, 0, canvas.width, canvas.height);
-    
+
     //img_canvas.style.display = "none";
-    
+
     ann_canvas.onclick = function(e){
         var xy = muuXY(e, image_block, this);
         //alert('Xの座標は' + xy[0] + 'Yの座標は' + xy[1]);
-        
+
         var mX = xy[0];
         var mY = xy[1];
-        
+
         document.getElementById('x-coord').innerHTML = mX;
         document.getElementById('y-coord').innerHTML = mY;
-        
+
         var r = mX.toString().concat(",");
         r = r.concat(mY.toString());
         r = r.concat(",");
         r = r.concat(document.getElementById("annotation").value);
         r = r.concat("\n");
         document.getElementById("res").innerHTML = r;
-        
+
         var client_w = ann_canvas.clientWidth;
         var client_h = ann_canvas.clientHeight;
-        
+
         document.getElementById("annotation").value = "Input Tag Text and Click the Tag Position";
         //tweet(r, file_name);
     }
@@ -76,7 +76,7 @@ function muuXY(e, block, that) {
         y = e.pageY + 1 - (block.offsetTop + that.offsetTop);
         //console.log(that.offsetLeft);
         //console.log(that.offsetTop);
-        
+
         /*
         x = e.pageX - e.target.offsetLeft;
         y = e.pageY - e.target.offsetTop;
@@ -129,7 +129,8 @@ function draw_ann(canvas, data, txt){
         var r = Math.floor(Math.random() * 256);
         var g = Math.floor(Math.random() * 256);
         var b = Math.floor(Math.random() * 256);
-        ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+        //ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+        ctx.fillStyle = 'white'; 
         ctx.globalAlpha = 0.75;
         ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
         ctx.shadowBlur = 3;
