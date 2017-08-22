@@ -106,6 +106,7 @@ function loadCSV(targetFile) {
     console.log(allData);
     return allData;
 }*/
+/*
 function draw_img(canvas, image){
     if (!canvas || !canvas.getContext)
         return false;
@@ -117,6 +118,7 @@ function draw_img(canvas, image){
         ctx.drawImage(img, 0, 0);
     }
 }
+*/
 function draw_ann(canvas, data, txt){
     var ctx = canvas.getContext('2d');
     //console.log(data[0][0])
