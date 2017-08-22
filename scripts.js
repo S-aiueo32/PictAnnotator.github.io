@@ -43,17 +43,14 @@ window.onload=function(){
         document.getElementById('x-coord').innerHTML = mX;
         document.getElementById('y-coord').innerHTML = mY;
 
-        var r = mX.toString().concat(",");
-        r = r.concat(mY.toString());
-        r = r.concat(",");
-        r = r.concat(document.getElementById("annotation").value);
-        r = r.concat("\n");
+        var r = mX.toString() + "," + mY.toString() + ","
+                  + document.getElementById("annotation").value + "\n";
         document.getElementById("res").innerHTML = r;
 
         var client_w = ann_canvas.clientWidth;
         var client_h = ann_canvas.clientHeight;
 
-        document.getElementById("annotation").value = "Input Tag Text and Click the Tag Position";
+        document.getElementById("annotation").value = "Input Your Annotation and Click its Position.";
         //tweet(r, file_name);
     }
 }
@@ -130,7 +127,7 @@ function draw_ann(canvas, data, txt){
         var g = Math.floor(Math.random() * 256);
         var b = Math.floor(Math.random() * 256);
         //ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
-        ctx.fillStyle = 'white'; 
+        ctx.fillStyle = 'white';
         ctx.globalAlpha = 0.75;
         ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
         ctx.shadowBlur = 3;
