@@ -1,19 +1,18 @@
 window.addEventListener("load", init);
 
-var cj = createjs;
-var stage;
-var img;
-var circle = new Array();
+var cj = createjs,
+    circle = new Array(),
+    stage,
+    img;
+
 
 function init() {
-    //ステージ生成
     stage = new cj.Stage("ann_canvas");
     var size = getDummySize();
     stage.canvas.width = size[0];
     stage.canvas.height = size[1];
 
-    img = new createjs.Bitmap("./2017081800.png");
-    console.log(img.width);
+    img = new createjs.Bitmap(getDummyPath());
     stage.addChild(img);
 
     circle.push([new cj.Shape, 0]);
@@ -42,20 +41,29 @@ createjs.Ticker.framerate = 60;
 
 //自動更新
 function handleTick() {
+    var mx = stage.mouseX,
+        my = stage.mouseY;
     for (var i = 0; i < circle.length; i++) {
         circle[i][0].scaleX *= 1.01;
         circle[i][0].scaleY *= 1.01;
-
         if (circle[i][0].scaleX > 2) {
-            //circle.x = 0;
             circle[i][0].scaleX = 1;
             circle[i][0].scaleY = 1;
         }
+        if (circle[i][0].x - 20 < mx && mx < circle[i][0].x + 20)
+            circle[i][0].alpha = 0.75;
+        else
+            circle[i][0].alpha = 0.5;
     }
     stage.update();
 }
 
-function getDummySize(){
+function getDummySize() {
     var dummy = document.getElementById('dummy');
     return [dummy.width, dummy.height];
+}
+
+function getDummyPath() {
+    var dummy = document.getElementById('dummy');
+    return dummy.src;
 }
