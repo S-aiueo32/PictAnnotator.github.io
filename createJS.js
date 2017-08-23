@@ -21,14 +21,12 @@ function init() {
     hitObj.graphics.beginFill("white").drawRect(0, 0, size[0], size[1]);
     hitObj.addEventListener("click", handleClick);
 
-
     circle.push([new cj.Shape, 0]);
     circle[0][0].x = stage.canvas.width / 2;
     circle[0][0].y = stage.canvas.height / 2;
     circle[0][0].shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 5);
     circle[0][0].alpha = 0.5;
     circle[0][0].graphics.beginFill("white").drawCircle(0, 0, 10);
-
 
     circle.push([new cj.Shape, 1]);
     circle[1][0].x = stage.canvas.width / 2 + 20;
@@ -42,7 +40,6 @@ function init() {
     for (var i = 0; i < circle.length; i++)
         stage.addChild(circle[i][0]);
 
-    //ステージ更新
     stage.update();
 
 }
@@ -79,12 +76,10 @@ function getDummyPath() {
     return dummy.src;
 }
 
-//img.addEventListener("click", handleClick);
-
 function handleClick(e) {
     var mx = stage.mouseX,
         my = stage.mouseY;
-    console.log(mx,my)
+    console.log(mx, my)
     document.getElementById('x-coord').innerHTML = mx;
     document.getElementById('y-coord').innerHTML = my;
 
