@@ -13,12 +13,6 @@ footer{
 	background-color:#aaaaaa;
 }
 
-#image_block{
-    position: relative;
-}
-#ann_canvas{
-    position:absolute;
-}
 #annotation{
 	width:75%;
 }
