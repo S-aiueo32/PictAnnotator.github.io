@@ -21,7 +21,6 @@ window.onload = function() {
 
     //draw_img(img_canvas, image);
 
-<<<<<<< HEAD
     var data = [
         [43, 383],
         [350, 166],
@@ -30,10 +29,6 @@ window.onload = function() {
         [30, 462]
     ];
     var txt = ["風が吹いている", "顔が描かれていない", "タッチがよい", "色がやわらか", "ブルーがきれい"];
-=======
-    var data = [[43, 383],[350, 166],[483, 509],[352, 751],[30, 462]];
-    var txt = ["風が吹いている","顔が描かれていない","タッチがよい","色がやわらか","ブルーがきれい"];
->>>>>>> 238674cbca85a2c38669b778501524626b278bd5
     draw_ann(ann_canvas, data, txt);
 
     //img_canvas.style.display = "inline";
@@ -44,11 +39,7 @@ window.onload = function() {
 
     //img_canvas.style.display = "none";
 
-<<<<<<< HEAD
     ann_canvas.onclick = function(e) {
-=======
-    ann_canvas.onclick = function(e){
->>>>>>> 238674cbca85a2c38669b778501524626b278bd5
         var xy = muuXY(e, image_block, this);
         //alert('Xの座標は' + xy[0] + 'Yの座標は' + xy[1]);
 
@@ -58,26 +49,17 @@ window.onload = function() {
         document.getElementById('x-coord').innerHTML = mX;
         document.getElementById('y-coord').innerHTML = mY;
 
-<<<<<<< HEAD
         var r = mX.toString().concat(",");
         r = r.concat(mY.toString());
         r = r.concat(",");
         r = r.concat(document.getElementById("annotation").value);
         r = r.concat("\n");
-=======
-        var r = mX.toString() + "," + mY.toString() + ","
-                  + document.getElementById("annotation").value + "\n";
->>>>>>> 238674cbca85a2c38669b778501524626b278bd5
         document.getElementById("res").innerHTML = r;
 
         var client_w = ann_canvas.clientWidth;
         var client_h = ann_canvas.clientHeight;
 
-<<<<<<< HEAD
         document.getElementById("annotation").value = "Input Tag Text and Click the Tag Position";
-=======
-        document.getElementById("annotation").value = "Input Your Annotation and Click its Position.";
->>>>>>> 238674cbca85a2c38669b778501524626b278bd5
         //tweet(r, file_name);
     }
 }
@@ -165,26 +147,3 @@ function draw_img(canvas, image){
     }
 }
 */
-<<<<<<< HEAD
-=======
-function draw_ann(canvas, data, txt){
-    var ctx = canvas.getContext('2d');
-    //console.log(data[0][0])
-    for(var i=0; i<txt.length; i++){
-        var radius = Math.floor( Math.random() * (30 + 1 - 20) ) + 20 ;
-        ctx.beginPath();
-        ctx.arc(data[i][0], data[i][1], radius, 0, Math.PI*2, true);
-        var r = Math.floor(Math.random() * 256);
-        var g = Math.floor(Math.random() * 256);
-        var b = Math.floor(Math.random() * 256);
-        //ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
-        ctx.fillStyle = 'white';
-        ctx.globalAlpha = 0.75;
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-        ctx.shadowBlur = 3;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 2;
-        ctx.fill();
-    }
-}
->>>>>>> 238674cbca85a2c38669b778501524626b278bd5
