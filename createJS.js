@@ -1,27 +1,36 @@
 window.addEventListener("load", init);
 
 var cj = createjs;
-var stagee
+var stage;
+var img;
 var circle = new Array();
-
-console.log(cj);
 
 function init() {
     //ステージ生成
     stage = new cj.Stage("ann_canvas");
+    var size = getDummySize();
+    stage.canvas.width = size[0];
+    stage.canvas.height = size[1];
 
-    circle[0] = new cj.Shape();
-    circle[0].x = stage.canvas.width / 2;
-    circle[0].y = stage.canvas.height / 2;
-    circle[0].graphics.beginFill("#ffffff").drawCircle(0, 0, 10);
+    img = new createjs.Bitmap("./2017081800.png");
+    console.log(img.width);
+    stage.addChild(img);
 
-    circle.push(new cj.Shape);
-    circle[1].x = stage.canvas.width / 2 + 20;
-    circle[1].y = stage.canvas.height / 2 + 20;
-    circle[1].graphics.beginFill("#ffffff").drawCircle(0, 0, 10);
+    circle.push([new cj.Shape, 0]);
+    circle[0][0].x = stage.canvas.width / 2;
+    circle[0][0].y = stage.canvas.height / 2;
+    circle[0][0].shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 3);
+    circle[0][0].graphics.beginFill("rgba(255,255,255,0.5)").drawCircle(0, 0, 10);
+
+
+    circle.push([new cj.Shape, 1]);
+    circle[1][0].x = stage.canvas.width / 2 + 20;
+    circle[1][0].y = stage.canvas.height / 2 + 20;
+    circle[1][0].shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 3);
+    circle[1][0].graphics.beginFill("rgba(255,255,255,0.5)").drawCircle(0, 0, 10);
 
     for (var i = 0; i < circle.length; i++)
-        stage.addChild(circle[i]);
+        stage.addChild(circle[i][0]);
 
     //ステージ更新
     stage.update();
@@ -34,14 +43,19 @@ createjs.Ticker.framerate = 60;
 //自動更新
 function handleTick() {
     for (var i = 0; i < circle.length; i++) {
-        circle[i].scaleX *= 1.01;
-        circle[i].scaleY *= 1.01;
+        circle[i][0].scaleX *= 1.01;
+        circle[i][0].scaleY *= 1.01;
 
-        if (circle[i].scaleX > 2) {
+        if (circle[i][0].scaleX > 2) {
             //circle.x = 0;
-            circle[i].scaleX = 1;
-            circle[i].scaleY = 1;
+            circle[i][0].scaleX = 1;
+            circle[i][0].scaleY = 1;
         }
     }
     stage.update();
+}
+
+function getDummySize(){
+    var dummy = document.getElementById('dummy');
+    return [dummy.width, dummy.height];
 }
