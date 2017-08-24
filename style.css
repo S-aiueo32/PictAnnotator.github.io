@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
 
 html{
 	background-color:#cccccc;
@@ -8,6 +9,9 @@ body{
 	margin:0 auto;
 	text-align:center;
 	background-color:#ffffff;
+}
+header{
+	font-family: 'Sacramento', sans-serif;
 }
 footer{
 	background-color:#aaaaaa;

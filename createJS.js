@@ -13,6 +13,7 @@ function init() {
     var size = getDummySize();
     stage.canvas.width = size[0];
     stage.canvas.height = size[1];
+    stage.enableMouseOver();
 
     img = new cj.Bitmap(getDummyPath());
     //img.addEventListener("click", handleClick);
@@ -21,14 +22,14 @@ function init() {
     hitObj.graphics.beginFill("white").drawRect(0, 0, size[0], size[1]);
     hitObj.addEventListener("click", handleClick);
 
-    circle.push([new cj.Shape, 0]);
+    circle.push([new cj.Shape, "text", 0]);
     circle[0][0].x = stage.canvas.width / 2;
     circle[0][0].y = stage.canvas.height / 2;
     circle[0][0].shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 5);
     circle[0][0].alpha = 0.5;
     circle[0][0].graphics.beginFill("white").drawCircle(0, 0, 10);
 
-    circle.push([new cj.Shape, 1]);
+    circle.push([new cj.Shape, "text", 1]);
     circle[1][0].x = stage.canvas.width / 2 + 20;
     circle[1][0].y = stage.canvas.height / 2 + 20;
     circle[1][0].shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 3);
@@ -37,8 +38,11 @@ function init() {
 
     stage.addChild(img);
     stage.addChild(hitObj);
-    for (var i = 0; i < circle.length; i++)
+    for (var i = 0; i < circle.length; i++) {
+        circle[i][0].addEventListener("mouseover", handleMouseOver);
+        circle[i][0].addEventListener("mouseout", handleMouseOut);
         stage.addChild(circle[i][0]);
+    }
 
     stage.update();
 
@@ -57,13 +61,34 @@ function handleTick() {
             circle[i][0].scaleX = 1;
             circle[i][0].scaleY = 1;
         }
-        if ((circle[i][0].x - 15 < mx && mx < circle[i][0].x + 15) &&
-            (circle[i][0].y - 15 < my && my < circle[i][0].y + 15))
-            circle[i][0].alpha = 1;
-        else
-            circle[i][0].alpha = 0.5;
     }
     stage.update();
+}
+
+function handleMouseOver(e) {
+    e.target.alpha = 0.9;
+    console.log(e.target)
+}
+
+function handleMouseOut(e) {
+    e.target.alpha = 0.5;
+    //console.log(e.currentTarget)
+}
+
+function handleClick(e) {
+    var mx = stage.mouseX,
+        my = stage.mouseY;
+    //console.log(mx, my)
+    document.getElementById('x-coord').innerHTML = mx;
+    document.getElementById('y-coord').innerHTML = my;
+
+    var r = mx.toString() + "," + my.toString() + "," +
+        document.getElementById("annotation").value + "\n";
+    document.getElementById("res").innerHTML = r;
+
+    document.getElementById("annotation").value =
+        "Input Your Annotation and Click its Position.";
+    //tweet(r, file_name);
 }
 
 function getDummySize() {
@@ -74,20 +99,4 @@ function getDummySize() {
 function getDummyPath() {
     var dummy = document.getElementById('dummy');
     return dummy.src;
-}
-
-function handleClick(e) {
-    var mx = stage.mouseX,
-        my = stage.mouseY;
-    console.log(mx, my)
-    document.getElementById('x-coord').innerHTML = mx;
-    document.getElementById('y-coord').innerHTML = my;
-
-    var r = mx.toString() + "," + mx.toString() + "," +
-        document.getElementById("annotation").value + "\n";
-    document.getElementById("res").innerHTML = r;
-
-    document.getElementById("annotation").value =
-        "Input Your Annotation and Click its Position.";
-    //tweet(r, file_name);
 }
