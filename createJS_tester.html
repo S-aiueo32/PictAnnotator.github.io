@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>unSticky Note Annotation</title>
+    <title>PictAnnotator</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
     <script type="text/javascript" src="./createJS.js"></script>
@@ -11,15 +11,16 @@
 
 <body>
     <header>
-        <h1>unSticky Note Annotation</h1>
+        <h1>PictAnnotator</h1>
     </header>
     <section>
         <div id="content">
             <div id="image_block">
-                <img id="dummy" src="./2017081800.png" style="display:none;" />
+                <img id="dummy" style="display:none;" />
                 <canvas id="ann_canvas"></canvas>
             </div>
             <input type="text" id="annotation" value="Input Your Annotation and Click its Position." />
+            <input type="file" id="input">
             <p>X:<span id="x-coord">-</span> Y:<span id="y-coord">-</span></p>
             <p>Result:<span id="res">-</span></p>
         </div>

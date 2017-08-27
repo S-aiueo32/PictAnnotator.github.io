@@ -16,7 +16,9 @@ header{
 footer{
 	background-color:#aaaaaa;
 }
-
+canvas{
+	background-color: #cccccc;
+}
 #annotation{
 	width:75%;
 }

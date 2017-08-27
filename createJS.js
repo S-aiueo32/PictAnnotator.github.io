@@ -2,7 +2,7 @@ window.addEventListener("load", init);
 
 var cj = createjs,
     data,
-    cont_array = new Array(),
+    cont_array,
     globalCnt = 0,
     stage,
     img,
@@ -11,11 +11,38 @@ var cj = createjs,
 
 
 function init() {
-    data = getData();
+    var obj1 = document.getElementById("input");
+    obj1.addEventListener("change", function(evt) {
+        var file = evt.target.files;
+        var reader = new FileReader();
+        reader.readAsText(file[0]);
+        reader.onload = function(ev) {
+            //alert(reader.result);
+            ln = reader.result.split("\n");
+            an = ln.length - 1;
+            document.getElementById("dummy").src = ln[0];
+            //console.log(document.getElementById("dummy"))
+            data = []
+            for (var i = 1; i < an; i++) {
+                w = ln[i].split(",");
+                data.push(w);
+            }
+            //console.log(data);
+            draw();
+        }
+    }, false);
+}
+
+function draw() {
     stage = new cj.Stage("ann_canvas");
     img = new cj.Bitmap(getDummyPath());
     hitObj = new cj.Shape();
     size = getDummySize();
+
+    stage.removeAllChildren();
+    cont_array = [];
+
+    stage.update();
 
     stage.canvas.width = size[0];
     stage.canvas.height = size[1];
@@ -34,11 +61,9 @@ function init() {
 
     stage.update();
 
+    cj.Ticker.addEventListener("tick", handleTick);
+    cj.Ticker.framerate = 60;
 }
-
-cj.Ticker.addEventListener("tick", handleTick);
-cj.Ticker.framerate = 60;
-
 
 function handleTick() {
     for (var i = 0; i < cont_array.length; i++) {
@@ -59,8 +84,8 @@ function handleMouseOver(e) {
         rect = parent.getChildAt(1),
         text = parent.getChildAt(2);
     circle.alpha = 0.9;
-    rect.alpha = 1;
-    text.alpha = 1;
+    rect.alpha = 0.9;
+    text.alpha = 0.9;
 }
 
 function handleMouseOut(e) {
@@ -81,10 +106,30 @@ function handleClick(e) {
     document.getElementById('x-coord').innerHTML = mx;
     document.getElementById('y-coord').innerHTML = my;
     document.getElementById("res").innerHTML = r;
-    document.getElementById("annotation").value =
-        "Input Your Annotation and Click its Position.";
+    //document.getElementById("annotation").value =
+    //    "Input Your Annotation and Click its Position.";
     //tweet(r, file_name);
 }
+
+/*
+function handleChange(e) {
+    var file = e.target.files;
+    var reader = new FileReader();
+    reader.readAsText(file[0]);
+    reader.onload = function(ev) {
+        alert(reader.result);
+        ln = reader.result.split("\n");
+        an = ln.length - 1;
+        document.getElementById("dummy").src = ln[0];
+        for (var i = 1; i < an + 1; i++) {
+            w = ln[i].split(",");
+            px[i - 1] = w[0];
+            py[i - 1] = w[1];
+            tx[i - 1] = w[2];
+        }
+    }
+}
+*/
 
 function getDummySize() {
     var dummy = document.getElementById('dummy');
@@ -106,14 +151,14 @@ function getData() {
 }
 
 
-function makeTag(data) {
+function makeTag(data_) {
     var container = new cj.Container(),
         circle = new cj.Shape(),
-        text = new cj.Text(data[2], "18px Arial", "black"),
+        text = new cj.Text(data_[2], "15px Arial", "black"),
         rect = new cj.Shape();
 
-    circle.x = data[0];
-    circle.y = data[1];
+    circle.x = Number(data_[0]);
+    circle.y = Number(data_[1]);
     circle.alpha = 0.5;
     circle.shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 5);
     circle.graphics.beginFill("white").drawCircle(0, 0, 10);
