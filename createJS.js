@@ -74,8 +74,8 @@ function handleMouseOut(e) {
 }
 
 function handleClick(e) {
-    var mx = stage.mouseX,
-        my = stage.mouseY,
+    var mx = Math.floor(stage.mouseX),
+        my = Math.floor(stage.mouseY),
         r = mx.toString() + "," + my.toString() + "," +
         document.getElementById("annotation").value + "\n";
     document.getElementById('x-coord').innerHTML = mx;
@@ -99,7 +99,7 @@ function getDummyPath() {
 function getData() {
     var data = [
         [47, 227, "風が吹いている"],
-        [224, 86, "顔が描かれていない"],
+        [338, 172, "顔が描かれていない"],
         [266, 643, "タッチがよい"]
     ]
     return data;
