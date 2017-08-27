@@ -20,7 +20,8 @@ function init() {
             //alert(reader.result);
             ln = reader.result.split("\n");
             an = ln.length - 1;
-            document.getElementById("dummy").src = ln[0];
+            dummy = document.getElementById("dummy")
+            dummy.src = ln[0];
             //console.log(document.getElementById("dummy"))
             data = []
             for (var i = 1; i < an; i++) {
@@ -28,7 +29,9 @@ function init() {
                 data.push(w);
             }
             //console.log(data);
-            draw();
+            dummy.onload = function() {
+                draw();
+            }
         }
     }, false);
 }
@@ -42,11 +45,11 @@ function draw() {
     stage.removeAllChildren();
     cont_array = [];
 
-    stage.update();
-
     stage.canvas.width = size[0];
     stage.canvas.height = size[1];
     stage.enableMouseOver();
+
+    //stage.update();
 
     hitObj.alpha = 0.01;
     hitObj.graphics.beginFill("white").drawRect(0, 0, size[0], size[1]);
