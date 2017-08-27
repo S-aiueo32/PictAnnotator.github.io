@@ -169,15 +169,15 @@ function makeTag(data_) {
     circle.addEventListener("mouseout", handleMouseOut);
     container.addChild(circle);
 
-    text.x = circle.x;
-    text.y = circle.y + 10;
+    text.x = circle.x - text.getMeasuredWidth()/2;
+    text.y = circle.y + 25;
     text.alpha = 0;
 
-    rect.x = circle.x;
-    rect.y = circle.y + 10;
+    rect.x = circle.x - text.getMeasuredWidth()/2;
+    rect.y = circle.y + 25;
     rect.alpha = 0;
     rect.shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 5);
-    rect.graphics.beginFill("white").drawRect(-5, -5,
+    rect.graphics.beginFill("white").drawRect(-6, -4,
         text.getMeasuredWidth() + 10, text.getMeasuredLineHeight() + 10);
 
     container.addChild(circle);
