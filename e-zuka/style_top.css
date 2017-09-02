@@ -1,0 +1,101 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Damion');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Open Sans", "sans-serif", "メイリオ", "meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "MS Pゴシック", "MS PGothic";
+    min-width: 400px;
+}
+
+header {
+    background-color: #F8BBD0;
+    height: 5%;
+    width: 100%;
+    font-family: "Damion";
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    position:relative;
+    z-index:2;
+}
+
+#header-innner {}
+
+#logo {
+    font-size: 3vh;
+    color: white;
+}
+
+#mv {
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url("./images/trees.jpg");
+    background-attachment: fixed;
+    background-position: center center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    position:relative;
+    z-index:1;
+}
+
+#mv-inner {
+    text-align: center;
+    color: white;
+}
+
+#mv-title {
+    font-family: "Damion";
+    line-height: 65px;
+    font-size: 75px;
+}
+
+#mv-ruby {
+    font-size: 10px;
+}
+
+#mv-caption {
+    margin: 25px 0;
+}
+
+#get-started {
+    padding: 8px 20px;
+    font-family: "Roboto";
+}
+
+#get-started a {
+    padding: 8px 20px;
+    border: solid;
+    border-radius: 25px;
+    text-decoration-line: none;
+    font-weight: bolder;
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+#get-started a:hover {
+    opacity: 0.8;
+}
+
+footer {
+    background-color: #F8BBD0;
+    color: white;
+    height: 2%;
+    font-family: "Roboto";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    z-index:0;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
