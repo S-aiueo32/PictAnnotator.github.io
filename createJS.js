@@ -13,25 +13,20 @@ var cj = createjs,
 function init() {
     var obj1 = document.getElementById("input");
     obj1.addEventListener("change", function(evt) {
-        var file = evt.target.files;
         var reader = new FileReader();
-        reader.readAsText(file[0]);
+        reader.readAsText(evt.target.files[0]);
         reader.onload = function(ev) {
-            //alert(reader.result);
             ln = reader.result.split("\n");
             an = ln.length - 1;
             dummy = document.getElementById("dummy")
             dummy.src = ln[0];
-            //console.log(document.getElementById("dummy"))
             data = []
             for (var i = 1; i < an; i++) {
                 w = ln[i].split(",");
                 data.push(w);
             }
-            //console.log(data);
-            dummy.onload = function() {
-                draw();
-            }
+
+            dummy.onload = draw();
         }
     }, false);
 }
@@ -169,11 +164,11 @@ function makeTag(data_) {
     circle.addEventListener("mouseout", handleMouseOut);
     container.addChild(circle);
 
-    text.x = circle.x - text.getMeasuredWidth()/2;
+    text.x = circle.x - text.getMeasuredWidth() / 2;
     text.y = circle.y + 25;
     text.alpha = 0;
 
-    rect.x = circle.x - text.getMeasuredWidth()/2;
+    rect.x = circle.x - text.getMeasuredWidth() / 2;
     rect.y = circle.y + 25;
     rect.alpha = 0;
     rect.shadow = new cj.Shadow("rgba(0,0,0,0.25)", 1, 2, 5);
