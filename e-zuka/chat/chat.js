@@ -1,290 +1,292 @@
 (function(win, doc) {
 
-  "use strict";
+    "use strict";
 
-  win.App = win.App || {};
+    win.App = win.App || {};
 
 })(this, document);
 $(function() {
-  (function(win, doc, ns) {
+    (function(win, doc, ns) {
 
-    "use strict";
+        "use strict";
 
-    function EventDispatcher() {
-      this._events = {};
-    }
-
-    EventDispatcher.prototype.hasEventListener = function(eventName) {
-      return !!this._events[eventName];
-    };
-
-    EventDispatcher.prototype.addEventListener = function(eventName, callback) {
-      if (this.hasEventListener(eventName)) {
-        var events = this._events[eventName],
-            length = events.length,
-            i = 0;
-
-        for (; i < length; i++) {
-          if (events[i] === callback) {
-            return;
-          }
+        function EventDispatcher() {
+            this._events = {};
         }
 
-        events.push(callback);
-      } else {
-        this._events[eventName] = [callback];
-      }
-    };
+        EventDispatcher.prototype.hasEventListener = function(eventName) {
+            return !!this._events[eventName];
+        };
 
-    EventDispatcher.prototype.removeEventListener = function(eventName, callback) {
-      if (!this.hasEventListener(eventName)) {
-        return;
-      } else {
-        var events = this._events[eventName],
-            i = events.length,
-            index;
+        EventDispatcher.prototype.addEventListener = function(eventName, callback) {
+            if (this.hasEventListener(eventName)) {
+                var events = this._events[eventName],
+                    length = events.length,
+                    i = 0;
 
-        while (i--) {
-          if (events[i] === callback) {
-            index = i;
-          }
+                for (; i < length; i++) {
+                    if (events[i] === callback) {
+                        return;
+                    }
+                }
+
+                events.push(callback);
+            } else {
+                this._events[eventName] = [callback];
+            }
+        };
+
+        EventDispatcher.prototype.removeEventListener = function(eventName, callback) {
+            if (!this.hasEventListener(eventName)) {
+                return;
+            } else {
+                var events = this._events[eventName],
+                    i = events.length,
+                    index;
+
+                while (i--) {
+                    if (events[i] === callback) {
+                        index = i;
+                    }
+                }
+
+                events.splice(index, 1);
+            }
+        };
+
+        EventDispatcher.prototype.fireEvent = function(eventName, opt_this, opt_arg) {
+            if (!this.hasEventListener(eventName)) {
+                return;
+            } else {
+                var events = this._events[eventName],
+                    copyEvents = _copyArray(events),
+                    arg = _copyArray(arguments),
+                    length = events.length,
+                    i = 0;
+
+                // eventNameとopt_thisを削除
+                arg.splice(0, 2);
+
+                for (; i < length; i++) {
+                    copyEvents[i].apply(opt_this || this, arg);
+                }
+            }
+
+            function _copyArray(array) {
+                var newArray = [],
+                    i = 0;
+
+                try {
+                    newArray = [].slice.call(array);
+                } catch (e) {
+                    for (; i < array.length; i++) {
+                        newArray.push(array[i]);
+                    }
+                }
+
+                return newArray;
+            }
+        };
+
+        ns.EventDispatcher = EventDispatcher;
+
+    })(this, document, App);
+    (function(win, doc, $, ns) {
+
+        "use strict";
+
+        var instance, originalConstructor;
+
+        function MessageList() {
+            var that = this;
+
+            _init();
+
+            function _init() {
+                ns.EventDispatcher.call(that);
+            }
+
+            this.him = [
+                "hello world."
+            ];
         }
 
-        events.splice(index, 1);
-      }
-    };
+        originalConstructor = MessageList.prototype.constructor;
+        MessageList.prototype = new ns.EventDispatcher();
+        MessageList.prototype.constructor = originalConstructor;
+        originalConstructor = null;
 
-    EventDispatcher.prototype.fireEvent = function(eventName, opt_this, opt_arg) {
-      if (!this.hasEventListener(eventName)) {
-        return;
-      } else {
-        var events     = this._events[eventName],
-            copyEvents = _copyArray(events),
-            arg        = _copyArray(arguments),
-            length     = events.length,
-            i = 0;
+        MessageList.getInstance = function() {
+            if (!instance) {
+                instance = new MessageList();
+            }
 
-        // eventNameとopt_thisを削除
-        arg.splice(0, 2);
+            return instance;
+        };
 
-        for (; i < length; i++) {
-          copyEvents[i].apply(opt_this || this, arg);
-        }
-      }
+        ns.MessageList = MessageList;
 
-      function _copyArray(array) {
-        var newArray = [],
-            i = 0;
+    })(this, document, $, App);
+    (function(win, doc, $, ns) {
 
-        try {
-          newArray = [].slice.call(array);
-        } catch(e) {
-          for (; i < array.length; i++) {
-            newArray.push(array[i]);
-          }
-        }
+        "use strict";
 
-        return newArray;
-      }
-    };
+        var instance, originalConstructor;
 
-    ns.EventDispatcher = EventDispatcher;
+        function MessageManager() {
+            var messageList = ns.MessageList.getInstance();
 
-  })(this, document, App);
-  (function(win, doc, $, ns) {
+            var that = this,
+                historyList = [],
+                index = 0,
+                LOOP_INDEX = 1;
 
-    "use strict";
+            _init();
 
-    var instance, originalConstructor;
+            function _init() {
+                ns.EventDispatcher.call(that);
 
-    function MessageList() {
-      var that = this;
+                var msg = new ns.Message("こんにちは", false);
 
-      _init();
+                msg.addEventListener("POST", _handlePost);
+                historyList.push(msg);
 
-      function _init() {
-        ns.EventDispatcher.call(that);
-      }
+                if (!!messageList.him[index + 1]) {
+                    ++index;
+                } else {
+                    index = messageList.him.length - LOOP_INDEX;
+                }
+            }
 
-      this.him = [
-        "hello world."
-      ];
-    }
+            function _handlePost(evt) {
+                var interval = 500 + Math.random() * 1000 | 0;
 
-    originalConstructor = MessageList.prototype.constructor;
-    MessageList.prototype = new ns.EventDispatcher();
-    MessageList.prototype.constructor = originalConstructor;
-    originalConstructor = null;
+                that.fireEvent("POST", evt, evt);
 
-    MessageList.getInstance = function() {
-      if (!instance) {
-        instance = new MessageList();
-      }
+                if (evt.target === "mine") {
+                    setTimeout(function() {
+                        receive();
+                    }, interval);
+                }
+            }
 
-      return instance;
-    };
+            function send(txt) {
+                if (!txt) {
+                    return;
+                }
 
-    ns.MessageList = MessageList;
+                var msg = new ns.Message(txt, true);
 
-  })(this, document, $, App);
-  (function(win, doc, $, ns) {
+                msg.addEventListener("POST", _handlePost);
+                historyList.push(msg);
+            }
 
-    "use strict";
+            function receive() {
+                var sendedMessage = historyList[historyList.length - 1].txt;
+                var url = "https://47dg897fbd.execute-api.ap-northeast-1.amazonaws.com/prod?message=";
+                $.getJSON(url + sendedMessage, function(json) {
+                    var m = messageList.him[index];
+                    if (json.status == "success") {
+                        m = json.result;
+                    }
 
-    var instance, originalConstructor;
+                    var msg = new ns.Message(m, false);
 
-    function MessageManager() {
-      var messageList = ns.MessageList.getInstance();
+                    msg.addEventListener("POST", _handlePost);
+                    historyList.push(msg);
 
-      var that        = this,
-          historyList = [],
-          index = 0,
-          LOOP_INDEX = 1;
+                    if (!!messageList.him[index + 1]) {
+                        ++index;
+                    } else {
+                        index = messageList.him.length - LOOP_INDEX;
+                    }
+                });
+            }
 
-      _init();
-
-      function _init() {
-        ns.EventDispatcher.call(that);
-
-        var msg = new ns.Message("こんにちは", false);
-
-        msg.addEventListener("POST", _handlePost);
-        historyList.push(msg);
-
-        if (!!messageList.him[index + 1]) {
-          ++index;
-        } else {
-          index = messageList.him.length - LOOP_INDEX;
-        }
-      }
-
-      function _handlePost(evt) {
-        var interval = 500 + Math.random() * 1000 | 0;
-
-        that.fireEvent("POST", evt, evt);
-
-        if (evt.target === "mine") {
-          setTimeout(function() {
-            receive();
-          }, interval);
-        }
-      }
-
-      function send(txt) {
-        if (!txt) {
-          return;
+            this.send = send;
         }
 
-        var msg = new ns.Message(txt, true);
+        originalConstructor = MessageManager.prototype.constructor;
+        MessageManager.prototype = new ns.EventDispatcher();
+        MessageManager.prototype.constructor = originalConstructor;
+        originalConstructor = null;
 
-        msg.addEventListener("POST", _handlePost);
-        historyList.push(msg);
-      }
+        MessageManager.getInstance = function() {
+            if (!instance) {
+                instance = new MessageManager();
+            }
 
-      function receive() {
-        var sendedMessage = historyList[historyList.length-1].txt;
-        var url = "https://47dg897fbd.execute-api.ap-northeast-1.amazonaws.com/prod?message=";
-        $.getJSON(url + sendedMessage, function(json) {
-          var m = messageList.him[index];
-          if (json.status == "success") {
-            m = json.result;
-          }
+            return instance;
+        };
 
-          var msg = new ns.Message(m, false);
+        ns.MessageManager = MessageManager;
 
-          msg.addEventListener("POST", _handlePost);
-          historyList.push(msg);
+    })(this, document, $, App);
+    (function(win, doc, $, ns) {
 
-          if (!!messageList.him[index + 1]) {
-            ++index;
-          } else {
-            index = messageList.him.length - LOOP_INDEX;
-          }
-        });
-      }
+        "use strict";
 
-      this.send = send;
-    }
+        var $stage = $("#global-stage"),
+            $inner = $stage.find("#global-stage-inner"),
+            originalConstructor;
 
-    originalConstructor = MessageManager.prototype.constructor;
-    MessageManager.prototype = new ns.EventDispatcher();
-    MessageManager.prototype.constructor = originalConstructor;
-    originalConstructor = null;
+        function Message(txt, isMine) {
+            if (!txt) {
+                return;
+            }
 
-    MessageManager.getInstance = function() {
-      if (!instance) {
-        instance = new MessageManager();
-      }
+            var that = this,
+                klass = isMine ? "invisble msg mine" : "invisble msg",
+                $msg = $('<div class="' + klass + '"><p class="txt">' + txt + '</p></div>');
 
-      return instance;
-    };
+            _init();
 
-    ns.MessageManager = MessageManager;
+            function _init() {
+                ns.EventDispatcher.call(that);
 
-  })(this, document, $, App);
-  (function(win, doc, $, ns) {
+                $inner.append($msg);
+                $stage.animate({
+                    scrollTop: $inner.height()
+                }, 200);
 
-    "use strict";
+                setTimeout(function() {
+                    $msg.removeClass("invisble");
+                    that.fireEvent("POST", that, that);
+                }, 100);
+            }
 
-    var $stage = $("#global-stage"),
-        $inner = $stage.find("#global-stage-inner"),
-        originalConstructor;
+            that.txt = txt;
+            that.target = isMine ? "mine" : "him";
+        }
 
-    function Message(txt, isMine) {
-      if (!txt) {
-        return;
-      }
+        originalConstructor = Message.prototype.constructor;
+        Message.prototype = new ns.EventDispatcher();
+        Message.prototype.constructor = originalConstructor;
+        originalConstructor = null;
 
-      var that  = this,
-          klass = isMine ? "invisble msg mine" : "invisble msg",
-          $msg  = $('<div class="' + klass + '"><p class="txt">' + txt + '</p></div>');
+        ns.Message = Message;
 
-      _init();
+    })(this, document, $, App);
+    (function(win, doc, $, ns) {
 
-      function _init() {
-        ns.EventDispatcher.call(that);
+        "use strict";
 
-        $inner.append($msg);
-        $stage.animate({scrollTop: $inner.height()}, 200);
+        var messageManager = ns.MessageManager.getInstance(),
+            $form = $("#global-footer-form"),
+            $txt = $("#global-footer-form-txt");
 
-        setTimeout(function() {
-          $msg.removeClass("invisble");
-          that.fireEvent("POST", that, that);
-        }, 100);
-      }
+        $form.submit(handleSubmit);
 
-      that.txt    = txt;
-      that.target = isMine ? "mine" : "him";
-    }
+        function handleSubmit(e) {
+            e.stopPropagation();
+            e.preventDefault();
 
-    originalConstructor = Message.prototype.constructor;
-    Message.prototype = new ns.EventDispatcher();
-    Message.prototype.constructor = originalConstructor;
-    originalConstructor = null;
+            messageManager.send($txt.val(), true);
 
-    ns.Message = Message;
+            $txt.val("");
 
-  })(this, document, $, App);
-  (function(win, doc, $, ns) {
+            return false;
+        }
 
-    "use strict";
-
-    var messageManager = ns.MessageManager.getInstance(),
-        $form = $("#global-footer-form"),
-        $txt  = $("#global-footer-form-txt");
-
-    $form.submit(handleSubmit);
-
-    function handleSubmit(e) {
-      e.stopPropagation();
-      e.preventDefault();
-
-      messageManager.send($txt.val(), true);
-
-      $txt.val("");
-
-      return false;
-    }
-
-  })(this, document, $, App);
+    })(this, document, $, App);
 });
