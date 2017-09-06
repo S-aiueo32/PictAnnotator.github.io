@@ -13,11 +13,11 @@ html, body {
 }
 
 header {
-    background-color: #F8BBD0;
+    background-color: #F48FB1;
     height: 5%;
     width: 100%;
     font-family: "Damion";
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,8 +39,9 @@ header {
     justify-content: center;
     align-items: center;
     background-blend-mode: overlay;
-    background-color: rgba(0, 0, 0, 0.5);
-    background-image: url("./images/trees.jpg");
+    background-color: rgba(0, 0, 0, 0.4);
+    background-image: url("./images/nolbert_landspaces_2560x1580.jpg");
+    background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
 }
@@ -85,11 +86,15 @@ header {
 }
 
 footer {
-    background-color: #F8BBD0;
+    background-color: #F48FB1;
     color: white;
+    font-size: 1.75vh;
     height: 5%;
-    font-family: "Roboto";
+    font-family: "Damion";
     display: flex;
     justify-content: center;
     align-items: center;
+    position:relative;
+    z-index:1;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
