@@ -183,8 +183,10 @@ $(function() {
 
             function receive() {
                 var sendedMessage = historyList[historyList.length - 1].txt;
-                var url = "https://47dg897fbd.execute-api.ap-northeast-1.amazonaws.com/prod?message=";
-                $.getJSON(url + sendedMessage, function(json) {
+                //var url = "https://47dg897fbd.execute-api.ap-northeast-1.amazonaws.com/prod?message=";
+                var url = "./recieve.json"
+                //$.getJSON(url + sendedMessage, function(json) {
+                $.getJSON(url, function(json) {
                     var m = messageList.him[index];
                     if (json.status == "success") {
                         m = json.result;

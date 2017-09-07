@@ -226,7 +226,7 @@ body {
 .msg {
     -webkit-transition: opacity .5s ease;
     transition: opacity .5s ease;
-    height: 75px;
+    min-height: 75px;
 }
 
 .msg .txt {
@@ -261,7 +261,7 @@ body {
 }
 
 .msg.mine .txt {
-    background-color: #C5E1A5;
+    background-color: #C5E1A5
     /*background: -webkit-linear-gradient(#c7f377, #97d267);
     background: linear-gradient(#c7f377, #97d267);*/
 }
