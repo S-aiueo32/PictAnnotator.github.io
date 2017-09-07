@@ -112,11 +112,11 @@ body {
 
 #global-stage-inner.mv {
     height: 100%;
-    background-image: url("./images/nolbert_landspaces_2560x1580.jpg");
-    background-repeat: no-repeat;
+    background: rgba(0, 0, 0, 0.5) url("./images/nolbert_landspaces_2560x1580.jpg") no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    background-blend-mode: overlay;
     text-align: center;
     overflow: hidden;
     color: #fff;
