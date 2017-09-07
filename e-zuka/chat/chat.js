@@ -183,10 +183,10 @@ $(function() {
 
             function receive() {
                 var sendedMessage = historyList[historyList.length - 1].txt;
-                //var url = "https://47dg897fbd.execute-api.ap-northeast-1.amazonaws.com/prod?message=";
-                var url = "https://s-aiueo32.github.io/e-zuka/recieve.json"
-                //$.getJSON(url + sendedMessage, function(json) {
-                $.getJSON(url, function(json) {
+                var url = "http://192.168.1.22/jsontest.php?msg=";
+                //var url = "https://s-aiueo32.github.io/e-zuka/recieve.json"
+                $.getJSON(url + sendedMessage, function(json) {
+                //$.getJSON(url, function(json) {
                     var m = messageList.him[index];
                     if (json.status == "success") {
                         m = json.result;
