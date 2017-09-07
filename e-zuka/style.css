@@ -1,40 +1,282 @@
-@charset "utf-8";
+@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Damion');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-html, body {
+section, nav, article, aside, hgroup, header, footer, figure, figcaption, details, summary, main {
+    display: block;
+}
+
+output {
+    display: inline;
+}
+
+progress, meter {
+    display: inline-block;
+}
+
+datalist {
+    display: none;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+html {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+q, blockquote {
+    quotes: none;
+}
+
+q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none;
+}
+
+a img {
+    border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font: 16px "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", sans-serif;
+}
+
+#global-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 175px;
+    min-width: 320px;
+}
+
+#global-header {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    background-color: #F48FB1;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#global-header .ttl {
+    font-family: "Damion";
+    font-size: 32px;
+    line-height: 50px;
+    color: #fff;
+}
+
+#global-stage {
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    background-color: #FCE4EC;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#global-stage-inner.mv {
+    height: 100%;
+    background-image: url("./images/nolbert_landspaces_2560x1580.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mv-title h1 {
+    font-family: "Damion";
+    font-size: 60px;
+    line-height: 40px;
+}
+
+#mv-title small {
+    font-size: 10px;
+}
+
+#mv-caption {
+    margin-top: 10px;
+}
+
+#mv-btn {
+    margin-top: 10px;
+}
+
+#mv-btn a {
+    display: inline-block;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: solid #fff;
+    border-radius: 30px;
+    font-weight: bolder;
+}
+
+#mv-btn a:hover {
+    opacity: 0.6;
+}
+
+#global-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #F48FB1;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    overflow: hidden;
+    z-index: 10;
+}
+
+#copy-wrapper {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#copy {
+    color: #fff;
+    font-size: 13px;
     font-family: "Damion";
 }
 
-header {
-    background-color: #E91E63;
-    color: white;
-    font-size: 4vh;
-    /*box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);*/
-}
-
-canvas {
-    display: block;
-    background-color: #FCE4EC;
-    margin: 0;
-    padding: 0;
-}
-
-footer {
-    background-color: #E91E63;
-    color: white;
-    font-size: 1.5vh;
-    text-align: right;
-    font-family: "Roboto";
-}
-
-#content {
-    margin: 0;
-    padding: 0;
-}
-
-.center {
-    width: 90%;
+#global-footer .form {
+    position: relative;
     margin: 0 auto;
+    height: 100%;
+    width: 320px;
+}
+
+#global-footer-form {
+    position: relative;
+    margin: 0 auto;
+    height: 100%;
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#global-footer .txt {
+    position: absolute;
+    border: none;
+    border-radius: 2px;
+    left: 0;
+    height: 30px;
+    width: 270px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
+    -webkit-appearance: none;
+}
+
+#global-footer .btn {
+    position: absolute;
+    height: 30px;
+    width: 40px;
+    border-radius: 2px;
+    border: none;
+    right: 0;
+    color: #fff;
+    text-align: center;
+    background: #E91E63;
+    -webkit-appearance: none;
+}
+
+.msg {
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease;
+    height: 75px;
+}
+
+.msg .txt {
+    display: inline-block;
+    position: relative;
+    margin: 20px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    /*background: -webkit-linear-gradient(#ffffff, #dbdfe2);
+    background: linear-gradient(#ffffff, #dbdfe2);*/
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.msg .txt:after {
+    display: block;
+    position: absolute;
+    /*margin-top: -6px;*/
+    bottom: 0%;
+    left: -16px;
+    border: solid 6px rgba(0, 0, 0, 0);
+    border-right: solid 10px #b9b9b9;
+    width: 0;
+    height: 0;
+    content: "";
+}
+
+.msg.mine {
+    text-align: right;
+}
+
+.msg.mine .txt {
+    background-color: #C5E1A5;
+    /*background: -webkit-linear-gradient(#c7f377, #97d267);
+    background: linear-gradient(#c7f377, #97d267);*/
+}
+
+.msg.mine .txt:after {
+    bottom: 0%;
+    left: auto;
+    right: -16px;
+    border: solid 6px rgba(0, 0, 0, 0);
+    border-left: solid 10px #b9b9b9;
+    width: 0;
+    height: 0;
+    content: "";
+}
+
+.msg.invisble {
+    opacity: 0;
 }
