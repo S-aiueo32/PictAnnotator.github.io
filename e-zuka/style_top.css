@@ -133,9 +133,11 @@ body {
 #mv-title small {
     font-size: 10px;
 }
-#mv-caption{
+
+#mv-caption {
     margin-top: 10px;
 }
+
 #mv-btn {
     margin-top: 10px;
 }
@@ -149,8 +151,9 @@ body {
     border-radius: 30px;
     font-weight: bolder;
 }
+
 #mv-btn a:hover {
-    opacity:0.6;
+    opacity: 0.6;
 }
 
 #global-footer {
@@ -164,14 +167,15 @@ body {
     z-index: 10;
 }
 
-#copy-wrapper{
+#copy-wrapper {
     height: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#copy{
+
+#copy {
     color: #fff;
     font-size: 13px;
     font-family: "Damion";
