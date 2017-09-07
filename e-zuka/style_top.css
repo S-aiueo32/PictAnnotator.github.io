@@ -127,13 +127,15 @@ body {
 #mv-title h1 {
     font-family: "Damion";
     font-size: 60px;
-    line-height: 60px;
+    line-height: 40px;
 }
 
 #mv-title small {
     font-size: 10px;
 }
-
+#mv-caption{
+    margin-top: 10px;
+}
 #mv-btn {
     margin-top: 10px;
 }
