@@ -182,21 +182,17 @@ body {
     font-family: "Damion";
 }
 
-#global-footer .form {
-    position: relative;
-    margin: 0 auto;
-    height: 100%;
-    width: 320px;
-}
-
 #global-footer-form {
     position: relative;
     margin: 0 auto;
     height: 100%;
     width: 320px;
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
+    -webkit-justify-content: center;
     align-items: center;
+    -webkit-align-items: center;
 }
 
 #global-footer .txt {
@@ -207,7 +203,6 @@ body {
     height: 30px;
     width: 270px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
-    -webkit-appearance: none;
 }
 
 #global-footer .btn {
@@ -220,7 +215,6 @@ body {
     color: #fff;
     text-align: center;
     background: #E91E63;
-    -webkit-appearance: none;
 }
 
 .msg {
