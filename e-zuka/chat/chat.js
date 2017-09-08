@@ -183,7 +183,7 @@ $(function() {
 
             function receive() {
                 var sendedMessage = historyList[historyList.length - 1].txt;
-                var url = "http://192.168.1.22/jsontest.php?msg=";
+                var url = "https://192.168.1.22/jsontest.php?msg=";
                 //var url = "https://s-aiueo32.github.io/e-zuka/recieve.json"
                 $.getJSON(url + sendedMessage, function(json) {
                 //$.getJSON(url, function(json) {
