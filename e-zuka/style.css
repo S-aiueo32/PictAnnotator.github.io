@@ -241,6 +241,20 @@ body {
     word-wrap: break-word;
 }
 
+.msg .photo {
+    display: inline-block;
+    position: relative;
+    margin: 20px;
+    padding: 10px 10px;
+    border-radius: 2px;
+    /*background: -webkit-linear-gradient(#ffffff, #dbdfe2);
+    background: linear-gradient(#ffffff, #dbdfe2);*/
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    max-width: 50%;
+    word-wrap: break-word;
+}
+
 .msg .txt:after {
     display: block;
     position: absolute;
