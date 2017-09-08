@@ -134,9 +134,9 @@ body {
     margin: 0 auto;
     height: 100%;
     width: 320px;
-    display: flex;
+    /*display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;*/
 }
 
 #global-footer .txt {
@@ -146,6 +146,8 @@ body {
     left: 0;
     height: 30px;
     width: 270px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
     -webkit-appearance: none;
 }
