@@ -146,7 +146,7 @@ $(function() {
             function _init() {
                 ns.EventDispatcher.call(that);
 
-                var msg = new ns.Message('<p class="txt">梨汁って言ってごらん🍐</p>', false);
+                var msg = new ns.Message("<p class=\"txt\">梨汁って言ってごらん🍐</p>", false);   //edited
 
                 msg.addEventListener("POST", _handlePost);
                 historyList.push(msg);
@@ -175,7 +175,7 @@ $(function() {
                     return;
                 }
 
-                var msg = new ns.Message('<p class="txt">' + txt + '</p>', true);
+                var msg = new ns.Message("<p class=\"txt\">"+txt+"</p>", true); //edited
 
                 msg.addEventListener("POST", _handlePost);
                 historyList.push(msg);
@@ -186,7 +186,7 @@ $(function() {
                 var url = "http://www.s-aiueo.sakura.ne.jp/kyoritsu/jsontest.php?msg=";
                 //var url = "https://s-aiueo32.github.io/e-zuka/recieve.json"
                 $.getJSON(url + sendedMessage, function(json) {
-                //$.getJSON(url, function(json) {
+                    //$.getJSON(url, function(json) {
                     var m = messageList.him[index];
                     if (json.status == "success") {
                         m = json.result;
@@ -238,8 +238,9 @@ $(function() {
             }
 
             var that = this,
-                klass = isMine ? 'invisble msg mine"' : 'invisble msg"><img class="icon" src="../images/icon.png"',
-                $msg = $('<div class="' + klass + '>' + txt + '</div>');
+                klass = isMine ? "invisble msg mine" : "invisble msg",
+                //$msg = $('<div class="' + klass + '"><p class="txt">' + txt + '</p></div>');
+                $msg = $('<div class="' + klass + '">' + txt + '</div>');
 
             _init();
 
