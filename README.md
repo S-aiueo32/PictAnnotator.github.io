@@ -1,2 +1,2 @@
 # S-aiueo32.github.io
-https://s-aiueo32.github.io/createJS_tester
+https://s-aiueo32.github.io/
