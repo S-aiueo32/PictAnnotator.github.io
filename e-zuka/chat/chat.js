@@ -238,8 +238,8 @@ $(function() {
             }
 
             var that = this,
-                klass = isMine ? "invisble msg mine" : "invisble msg",
-                $msg = $('<div class="' + klass + '"><p class="txt">' + txt + '</p></div>');
+                klass = isMine ? 'invisble msg mine"' : 'invisble msg"><img class="icon" src="../images/icon.png"',
+                $msg = $('<div class="' + klass + '><p class="txt">' + txt + '</p></div>');
 
             _init();
 
