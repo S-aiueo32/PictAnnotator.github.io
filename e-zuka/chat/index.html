@@ -14,6 +14,22 @@
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = 'ja';
+
+        // 録音終了時トリガー
+        recognition.addEventListener('result', function(event) {
+            var text = event.results.item(0).item(0).transcript;
+            $("#result_text").val(text);
+        }, false);
+
+        // 録音開始
+        function record() {
+            recognition.start();
+        }
+    </script>
     <!--Import entrypoint-->
     <script type="text/javascript" src="chat.js"></script>
 </head>
@@ -26,6 +42,9 @@
 
         <div id="global-stage">
             <div id="global-stage-inner" class="inner">
+                <textarea id="result_text" cols="100" rows="10"></textarea>
+                <br />
+                <input type="button" onClick="record()" value="録音開始" />
                 <!--<div class="msg">
                     <img class="icon" src="../images/icon.png"/>
                     <img class="photo" src="../images/42.jpg"/><br />
