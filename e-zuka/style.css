@@ -167,6 +167,7 @@ body {
     color: #E91E63;
     background: #FCE4EC;
     transition: .4s;
+    font-size:16px;
 }
 
 #iine:hover {
@@ -186,6 +187,7 @@ body {
     color: #668ad8;
     background: #FCE4EC;
     transition: .4s;
+    font-size:16px;
 }
 
 #imaichi:hover {
