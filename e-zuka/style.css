@@ -195,6 +195,10 @@ body {
     color: #FFF;
 }
 
+* {
+    -webkit-appearance: none;
+}
+
 #global-footer {
     position: absolute;
     bottom: 0;
