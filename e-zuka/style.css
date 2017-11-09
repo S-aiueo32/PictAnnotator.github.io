@@ -155,6 +155,44 @@ body {
     opacity: 0.6;
 }
 
+#iine{
+    border-style: none;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-left: solid 4px #E91E63;
+    border-right: solid 4px #E91E63;
+    color: #E91E63;
+    background: #FCE4EC;
+    transition: .4s;
+}
+
+#iine:hover {
+    background: #E91E63;
+    color: #FFF;
+}
+
+#imaichi{
+    border-style: none;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-left: solid 4px #668ad8;
+    border-right: solid 4px #668ad8;
+    color: #668ad8;
+    background: #FCE4EC;
+    transition: .4s;
+}
+
+#imaichi:hover {
+    background: #668ad8;
+    color: #FFF;
+}
+
 #global-footer {
     position: absolute;
     bottom: 0;
@@ -200,6 +238,7 @@ body {
     width: 270px;
     padding: 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
+    font-size: 16px;
 }
 
 #global-footer .btn {

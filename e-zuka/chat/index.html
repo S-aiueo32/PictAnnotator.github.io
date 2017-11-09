@@ -42,10 +42,7 @@
 
         <div id="global-stage">
             <div id="global-stage-inner" class="inner">
-                <textarea id="result_text" cols="100" rows="10"></textarea>
-                <br />
-                <input type="button" onClick="record()" value="録音開始" />
-                <!--<div class="msg">
+                <div class="msg">
                     <img class="icon" src="../images/icon.png"/>
                     <img class="photo" src="../images/42.jpg"/><br />
                     <p class="txt">aaa</p>
@@ -54,7 +51,12 @@
                     <img class="icon" src="../images/icon.png"/>
                     <p class="txt">aaa</p>
                 </div>
-                <div class="msg mine"><p class="txt">aaa</p></div>-->
+                <div class="msg mine">
+                    <p class="txt">
+                        <input id="iine" type="button" value="いいね！" onclick="history.back()" />
+                        <input id="imaichi" type="button" value="他を見る" onclick="history.back()" />
+                    </p>
+                </div>
             </div>
         </div>
 
